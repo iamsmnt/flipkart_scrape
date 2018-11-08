@@ -30,14 +30,14 @@ print(title)
 
 text = soup.get_text()
 
-#print(text)
+#the data structure to save the values
 shoes_ = []
 ratings_ =  []
 prices_ = []
 discounts_ = []
 d_price = []
 
-
+#class and attribute search of html tags using BeautifulSoup
 all_shoes = soup.find_all("a",attrs = {"class":"_2cLu-l"})
 all_ratings = soup.find_all("div",attrs = {"class":"hGSR34 _2beYZw"})
 all_prices = soup.find_all("div", attrs = {"class":"_3auQ3N"})
@@ -48,7 +48,7 @@ all_dp = soup.find_all("div",attrs = {"class":"_1vC4OE"})
 l=0
 for shoes in all_shoes:
     l += 1
-    if l < 41:
+    if l < 41: #setting the limit to scrape items in the first page
         shoes_.append(shoes.get_text())
 
 i = 0  
@@ -78,4 +78,4 @@ val = [shoes_,ratings_,prices_,discounts_]
 labels = ['shoes']
 products_df = pd.DataFrame({'shoes':shoes_,'ratings':ratings_,'prices':prices_,'discounts':discounts_,'discount price':d_price})
 
-products_df.to_csv('flipkart_shoes.csv',index = True)
+products_df.to_csv('flipkart_shoes.csv',index = True) # saving the scraped items into a csv.file
